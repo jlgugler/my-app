@@ -1,0 +1,55 @@
+/* src/Panel.css */
+.panel {
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    position: relative; /* Ensure the panel can contain positioned elements */
+  }
+  
+  .ports-container {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    position: absolute; /* Ensure the ports are positioned inside the panel */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .edit-ports {
+    margin-top: 20px;
+  }
+  
+  .edit-port {
+    margin-bottom: 10px;
+  }
+  
+  .edit-port label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .toggle-edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .save-changes {
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }

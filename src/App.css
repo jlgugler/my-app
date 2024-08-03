@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  display: flex;
 }
 
 .App-logo {
@@ -35,4 +36,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.content {
+  margin-left: 200px; /* Adjust this value to match the width of your navbar */
+  padding: 20px;
 }
