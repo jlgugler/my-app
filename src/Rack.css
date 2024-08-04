@@ -1,0 +1,29 @@
+/* src/Rack.css */
+.rack {
+  display: flex;
+  flex-direction: column;
+}
+
+.rack-unit {
+  width: 100%;
+  height: 20px; /* Assuming each U size unit is 20px in height */
+  margin-bottom: 2px;
+  box-sizing: border-box;
+}
+
+.rack-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.rack-section.center {
+  flex-direction: row;
+}
+
+.rack-section.top {
+  text-align: center;
+}

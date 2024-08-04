@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import Panel from './Panel';
+import Rack from './Rack';
 import './App.css';
 
 function App() {
@@ -15,8 +16,10 @@ function App() {
     switch (currentTopic) {
       case 'panel':
         return <Panel name="My Panel" length="200px" height="100px" position="relative" type="Rectangle" />;
-      case 'topic2':
-        return <div>Topic 2 Content</div>;
+      case 'rack1':
+        return <Rack name="Rack 1" uSize={42} type="Server" room="Room A" />;
+      case 'rack2':
+        return <Rack name="Rack 2" uSize={24} type="Network" room="Room B" />; {/* New rack for the second topic */}
       case 'topic3':
         return <div>Topic 3 Content</div>;
       case 'topic4':
@@ -29,7 +32,7 @@ function App() {
   return (
     <div className="App">
       <Navbar onSelectTopic={handleSelectTopic} />
-      <div className="content">
+      <div className="App-content">
         {renderContent()}
       </div>
     </div>

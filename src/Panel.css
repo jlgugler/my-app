@@ -4,32 +4,37 @@
     padding: 10px;
     margin: 10px;
     background-color: #f0f0f0;
+    width: 100%; /* Make the panel larger */
+    height: auto; /* Adjust height to fit content */
     position: relative; /* Ensure the panel can contain positioned elements */
   }
   
   .ports-container {
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr; /* Display ports in a single row */
+    grid-template-columns: repeat(24, 1fr); /* Adjust columns to fit all ports */
+    gap: 5px; /* Smaller gap between ports */
+    position: relative; /* Ensure the ports are positioned inside the panel */
+  }
+  
+  .port {
+    width: 20px; /* Make ports smaller */
+    height: 20px; /* Make ports smaller */
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .edit-panel {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    position: absolute; /* Ensure the ports are positioned inside the panel */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
   }
   
-  .edit-ports {
-    margin-top: 20px;
-  }
-  
-  .edit-port {
-    margin-bottom: 10px;
-  }
-  
-  .edit-port label {
-    display: block;
-    margin-bottom: 5px;
+  .edit-panel label {
+    display: flex;
+    flex-direction: column;
   }
   
   .toggle-edit {
@@ -44,9 +49,6 @@
   }
   
   .save-changes {
-    position: absolute;
-    top: 10px;
-    right: 80px;
     background-color: #28a745;
     color: white;
     border: none;

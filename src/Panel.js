@@ -1,4 +1,3 @@
-// src/Panel.js
 import React, { useState } from 'react';
 import './Panel.css';
 import Port from './Port';
@@ -8,18 +7,21 @@ const Panel = ({ name, length, height, position, type }) => {
     id: index,
     name: `Port ${index + 1}`,
     type: 'Square',
-    row: Math.floor(index / 6) + 1,
-    column: (index % 6) + 1,
+    row: 1,
+    column: index + 1,
     portNumber: index + 1,
   }));
 
-  const [ports, setPorts] = useState(initialPorts);
+  const [ports] = useState(initialPorts);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [panelProperties, setPanelProperties] = useState({ name, length, height, type });
 
-  const updatePort = (id, property, value) => {
-    setPorts(ports.map(port => 
-      port.id === id ? { ...port, [property]: value } : port
-    ));
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setPanelProperties({
+      ...panelProperties,
+      [name]: value,
+    });
   };
 
   const toggleEditMode = () => {
@@ -32,15 +34,58 @@ const Panel = ({ name, length, height, position, type }) => {
   };
 
   return (
-    <div className="panel" style={{ width: length, height: height, position: position }}>
-      <h2>{name}</h2>
-      <p>Type: {type}</p>
-      <p>Length: {length}</p>
-      <p>Height: {height}</p>
-      <button className="toggle-edit" onClick={toggleEditMode}>
-        {isEditMode ? 'Cancel' : 'Edit'}
-      </button>
-      {isEditMode && <button className="save-changes" onClick={saveChanges}>Save</button>}
+    <div className="panel" style={{ width: panelProperties.length, height: panelProperties.height, position: position }}>
+      {isEditMode ? (
+        <div className="edit-panel">
+          <label>
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={panelProperties.name}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Length:
+            <input
+              type="number"
+              name="length"
+              value={panelProperties.length}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Height:
+            <input
+              type="number"
+              name="height"
+              value={panelProperties.height}
+              onChange={handleInputChange}
+            />
+          </label>
+          <label>
+            Type:
+            <input
+              type="text"
+              name="type"
+              value={panelProperties.type}
+              onChange={handleInputChange}
+            />
+          </label>
+          <button className="save-changes" onClick={saveChanges}>Save</button>
+        </div>
+      ) : (
+        <>
+          <h2>{panelProperties.name}</h2>
+          <p>Type: {panelProperties.type}</p>
+          <p>Length: {panelProperties.length}</p>
+          <p>Height: {panelProperties.height}</p>
+          <button className="toggle-edit" onClick={toggleEditMode}>
+            Edit
+          </button>
+        </>
+      )}
       <div className="ports-container">
         {ports.map(port => (
           <Port
@@ -53,31 +98,6 @@ const Panel = ({ name, length, height, position, type }) => {
           />
         ))}
       </div>
-      {isEditMode && (
-        <div className="edit-ports">
-          {ports.map(port => (
-            <div key={port.id} className="edit-port">
-              <h3>Edit {port.name}</h3>
-              <label>
-                Row:
-                <input
-                  type="number"
-                  value={port.row}
-                  onChange={(e) => updatePort(port.id, 'row', parseInt(e.target.value))}
-                />
-              </label>
-              <label>
-                Column:
-                <input
-                  type="number"
-                  value={port.column}
-                  onChange={(e) => updatePort(port.id, 'column', parseInt(e.target.value))}
-                />
-              </label>
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };
